@@ -3,6 +3,7 @@ import sys
 
 from src.exception import CustomeException
 from src.logger import logging
+from src.components.data_transformation import DataTransformation,DataTransformationConfig
 
 import pandas as pd
 import numpy as np
@@ -52,10 +53,14 @@ class DataIngestion:
 
 
         except Exception as e:
-            logging.info(f"error Occuredd {CustomeException(e,sys)}")
+            logging.info(f"error Occured in initiate_data_ingestion {CustomeException(e,sys)}")
             raise CustomeException(e,sys)
 
 
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data,test_data=obj.initiate_data_ingestion()
+
+    data_transormation=DataTransformation()
+    data_transormation.initiate_data_transformation(train_data,test_data)
+
