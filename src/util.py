@@ -42,13 +42,23 @@ def evaluate_models(X_train, y_train,X_test,y_test,models) -> dict:
             # print(len(model))
 
             estimator = list(models.values())[i]['model']
+            
             logging.info(f"Current Estimator is {list(models.keys())[i]}")
+            
             model= GridSearchCV(estimator, list(models.values())[i]['parameters'],scoring='neg_mean_squared_error',cv=5)
+            
             model.fit(X_train, y_train)  # Train model
+            
+            logging.info(f"{estimstor} with best parameters {modes.besr_params_} and best score of {model.best_score_}")
+            
+            estimator.set_params(**model.best_params_)
+            
+            estimator.fit(X_train, y_train)
+            
+            
+            y_train_pred = estimator.predict(X_train)
 
-            y_train_pred = model.predict(X_train)
-
-            y_test_pred = model.predict(X_test)
+            y_test_pred = estimator.predict(X_test)
 
             train_model_score = r2_score(y_train, y_train_pred)
 
@@ -72,32 +82,3 @@ def load_object(file_path):
     except Exception as e:
         logging.info(f"Error Occured {CustomeException(e,sys)}")
         raise CustomeException(e, sys)
-
-
-
-
-# def evaluate_models(X_train, y_train,X_test,y_test,models):
-#     try:
-#         report = {}
-
-#         for i in range(len(list(models))):
-#             model = list(models.values())[i]
-
-#             model.fit(X_train, y_train)  # Train model
-#             logging.info(f'training started for {list(models.keys())[i]}')
-
-#             y_train_pred = model.predict(X_train)
-
-#             y_test_pred = model.predict(X_test)
-
-#             train_model_score = r2_score(y_train, y_train_pred)
-
-#             test_model_score = r2_score(y_test, y_test_pred)
-
-#             report[list(models.keys())[i]] = test_model_score
-
-#         return report
-
-#     except Exception as e:
-#          logging.info(f'Error Occured {CustomeException(e,sys)}')
-#          raise CustomeException(e,sys)
