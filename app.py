@@ -37,7 +37,7 @@ def predict_datapoint():
         pred_input_df=data.get_data_as_data_frame()
         logging.info(f"Data for Prediction is {pred_input_df.values}")
         predict_pipeline=PredictPipeline()
-        results=predict_datapoint.predict(pred_input_df)
+        results=predict_pipeline.predict(pred_input_df)
         return render_template('home.html',results=results[0])
 
 
