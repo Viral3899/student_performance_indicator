@@ -49,7 +49,7 @@ def evaluate_models(X_train, y_train,X_test,y_test,models) -> dict:
             
             model.fit(X_train, y_train)  # Train model
             
-            logging.info(f"{estimator} with best parameters {model.besr_params_} and best score of {model.best_score_}")
+            logging.info(f"{estimator} with best parameters {model.best_params_} and best score of {model.best_score_}")
             
             estimator.set_params(**model.best_params_)
             
