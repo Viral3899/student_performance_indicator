@@ -60,9 +60,17 @@ class ModelTrainer:
 
                 "Decision Tree":{'model':DecisionTreeRegressor(),"parameters":{'max_depth':[i for i in range(2,10)],'criterion' : ["squared_error", "absolute_error", "friedman_mse", "poisson"],'max_features' : ["auto", "sqrt", "log2"]}} ,
 
-                "Gradient Boosting":{'model':GradientBoostingRegressor(),"parameters":{'loss' : ['squared_error', 'absolute_error', 'huber', 'quantile'],'n_estimators':[i for i in range (50,251,50)],'learning_rate':[.005,.001,.05,.01,.1,.5,1],'criterion' : ['friedman_mse', 'squared_error'],'max_features' : ['auto', 'sqrt', 'log2'],'max_depth':[i for i in range(2,10)]}} ,
+                "Gradient Boosting":{'model':GradientBoostingRegressor(),"parameters":{
+                    # 'loss' : ['squared_error', 'absolute_error', 'huber', 'quantile'],
+                    'n_estimators':[i for i in range (50,251,50)],
+                'learning_rate':[.005,.001,.05,.01,.1,.5,1],
+                # 'criterion' : ['friedman_mse', 'squared_error'],'max_features' : ['auto', 'sqrt', 'log2'],
+                # 'max_depth':[i for i in range(2,10)]
+                }} ,
 
-                "K-Neighbors Classifier":{'model':KNeighborsRegressor(n_jobs=-1),"parameters":{'weights' :['uniform', 'distance'],'n_neighbors':[i for i in range(1,15)],'algorithm' : ['auto', 'ball_tree', 'kd_tree', 'brute']}} ,
+                "K-Neighbors Classifier":{'model':KNeighborsRegressor(n_jobs=-1),"parameters":{'weights' :['uniform', 'distance'],
+                'n_neighbors':[i for i in range(1,15)],'algorithm' : ['auto', 'ball_tree', 'kd_tree', 'brute']
+                }} ,
 
                 "XGBClassifier": {'model':XGBRegressor(),"parameters":{'n_estimators':[i for i in range (50,251,50)],}},
 
