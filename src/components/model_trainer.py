@@ -56,11 +56,11 @@ class ModelTrainer:
 
                 # "Lasso Regression":{'model':Ridge(),"parameters":{"alpha":[0.0001, 0.001,0.01, 0.1, 1, 10,15,20],'selection':['cyclic', 'random']}},
 
-                "Random Forest":{'model':RandomForestRegressor(n_jobs=-1),"parameters":{'n_estimators':[i for i in range (50,251,50)],'max_features' : ["sqrt", "log2", None],'max_depth':[i for i in range(2,10)],'criterion' : ["squared_error", "absolute_error", "friedman_mse", "poisson"],}} ,
+                "Random Forest Regressor":{'model':RandomForestRegressor(n_jobs=-1),"parameters":{'n_estimators':[i for i in range (50,251,50)],'max_features' : ["sqrt", "log2", None],'max_depth':[i for i in range(2,10)],'criterion' : ["squared_error", "absolute_error", "friedman_mse", "poisson"],}} ,
 
-                "Decision Tree":{'model':DecisionTreeRegressor(),"parameters":{'max_depth':[i for i in range(2,10)],'criterion' : ["squared_error", "absolute_error", "friedman_mse", "poisson"],'max_features' : ["auto", "sqrt", "log2"]}} ,
+                "Decision Tree Regressor":{'model':DecisionTreeRegressor(),"parameters":{'max_depth':[i for i in range(2,10)],'criterion' : ["squared_error", "absolute_error", "friedman_mse", "poisson"],'max_features' : ["auto", "sqrt", "log2"]}} ,
 
-                "Gradient Boosting":{'model':GradientBoostingRegressor(),"parameters":{
+                "Gradient Boosting Regressor":{'model':GradientBoostingRegressor(),"parameters":{
                     # 'loss' : ['squared_error', 'absolute_error', 'huber', 'quantile'],
                     'n_estimators':[i for i in range (50,251,50)],
                 'learning_rate':[.005,.001,.05,.01,.1,.5,1],
@@ -68,15 +68,15 @@ class ModelTrainer:
                 # 'max_depth':[i for i in range(2,10)]
                 }} ,
 
-                "K-Neighbors Classifier":{'model':KNeighborsRegressor(n_jobs=-1),"parameters":{'weights' :['uniform', 'distance'],
+                "K-Neighbors Regressor":{'model':KNeighborsRegressor(n_jobs=-1),"parameters":{'weights' :['uniform', 'distance'],
                 'n_neighbors':[i for i in range(1,15)],'algorithm' : ['auto', 'ball_tree', 'kd_tree', 'brute']
                 }} ,
 
-                "XGBClassifier": {'model':XGBRegressor(),"parameters":{'n_estimators':[i for i in range (50,251,50)],}},
+                "XGBRegressor": {'model':XGBRegressor(),"parameters":{'n_estimators':[i for i in range (50,251,50)],}},
 
-                "CatBoosting Classifier": {'model':CatBoostRegressor(verbose=False),"parameters":{'max_depth':[i for i in range(2,10)]}},
+                "CatBoosting Regressor": {'model':CatBoostRegressor(verbose=False),"parameters":{'max_depth':[i for i in range(2,10)]}},
 
-                "AdaBoost Classifier":{'model':AdaBoostRegressor(),"parameters":{'loss' : ['linear', 'square', 'exponential'],'n_estimators':[i for i in range (50,251,50)]}},
+                "AdaBoost Regressor":{'model':AdaBoostRegressor(),"parameters":{'loss' : ['linear', 'square', 'exponential'],'n_estimators':[i for i in range (50,251,50)]}},
 
 
             }
